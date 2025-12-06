@@ -93,7 +93,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/transport-facility-app/",
+            "repo": "https://github.com/rohan-raj-iiitb/transport-facility-app.git",
+            "deployDir": "dist/transport-facility-app"
+          }
         }
       }
     }
