@@ -1,0 +1,53 @@
+<section class="card">
+  <h2>Search & Book Rides</h2>
+
+  <div class="form">
+    <div class="form-row">
+      <label>Your Employee ID *</label>
+      <input [(ngModel)]="employeeId" name="bookEmpId" />
+    </div>
+
+    <div class="form-row">
+      <label>Desired Time *</label>
+      <input type="time" [(ngModel)]="time" name="searchTime" />
+    </div>
+
+    <div class="form-row">
+      <label>Vehicle Type</label>
+      <select [(ngModel)]="vehicleType" name="searchVehicleType">
+        <option *ngFor="let vt of vehicleTypes" [value]="vt">
+          {{ vt }}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn-primary" (click)="onSearch()">Search Rides</button>
+  </div>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+
+  <table *ngIf="rides.length" class="rides-table">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Time</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Seats</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of rides">
+        <td>{{ r.vehicleType }} ({{ r.vehicleNo }})</td>
+        <td>{{ r.time }}</td>
+        <td>{{ r.pickupPoint }}</td>
+        <td>{{ r.destination }}</td>
+        <td>{{ r.vacantSeats }}</td>
+        <td>
+          <button class="btn-secondary" (click)="onBook(r)">Book</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

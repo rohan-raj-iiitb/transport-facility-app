@@ -1,6 +1,11 @@
 <div class="app-shell">
-  <h1>{{ title }}</h1>
-  <p>Schedule and book rides for today only.</p>
+  <header class="header">
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Schedule and book rides for the current day only.</p>
+  </header>
 
-  <app-add-ride></app-add-ride>
+  <main class="content">
+    <app-add-ride></app-add-ride>
+    <app-search-book-ride></app-search-book-ride>
+  </main>
 </div>

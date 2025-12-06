@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AddRideComponent } from './features/add-ride/add-ride.component';
+import { SearchBookRideComponent } from './features/search-book-ride/search-book-ride.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddRideComponent
+    AddRideComponent,
+    SearchBookRideComponent
   ],
   imports: [
     BrowserModule,
