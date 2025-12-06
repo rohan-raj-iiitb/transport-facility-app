@@ -1,27 +1,111 @@
-# TransportFacilityApp
+# Transport Facility Management (InfrRd Assignment)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+A simple web application for employees to schedule and book pick-up/drop-off transport facility
+for the **current day only**.
 
-## Development server
+Built as part of the InfrRd frontend assignment using **Angular** and **plain CSS** (no CSS frameworks).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Live Demo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> Hosted on GitHub Pages  
+Live Demo: https://rohan-raj-iiitb.github.io/transport-facility-app/
 
-## Build
+GitHub Repo: https://github.com/rohan-raj-iiitb/transport-facility-app
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🧩 Problem Overview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Employees can:
 
-## Running end-to-end tests
+- Add a ride they are offering for **today**
+- Search for available rides near a desired time
+- Book a ride if seats are available
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Constraints:
 
-## Further help
+- Rides are only for the **current day**
+- Only rides within **±60 minutes** of requested time are shown
+- Filter rides by **Vehicle Type** (Bike / Car)
+- Booking rules:
+  - Booking employee cannot be the ride owner
+  - Same employee cannot book the same ride twice
+  - Vacant seats decrement on each booking
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## 🛠 Tech Stack
+
+- **Angular** (v17+)
+- **TypeScript**
+- **HTML / CSS** (no CSS frameworks)
+- **Karma + Jasmine** for unit tests
+- **LocalStorage** for simple persistence in the browser
+
+---
+
+## 🧱 Features
+
+### 1. Add New Ride
+
+Captures:
+
+- Employee ID (mandatory)
+- Vehicle Type (Bike/Car)
+- Vehicle No (mandatory)
+- Vacant Seats (mandatory)
+- Time (mandatory)
+- Pick-up Point (mandatory)
+- Destination (mandatory)
+
+A new ride is always stored for **today's date**.
+
+### 2. Search & Book Ride
+
+- Enter **your Employee ID**, desired time, and optional vehicle type.
+- Shows only rides:
+  - For **today**
+  - With `vacantSeats > 0`
+  - Within **±60 minutes** of requested time
+- Booking:
+  - Validates rules:
+    - Cannot book own ride
+    - Cannot double-book same ride
+    - No booking if seats are 0
+  - Decrements `vacantSeats` on success
+
+---
+
+## 🏗 Architecture
+
+- `src/app/core/models/ride.model.ts`  
+  Ride interface and `VehicleType` type.
+
+- `src/app/core/services/ride.service.ts`  
+  Core business logic:
+  - `addRide(...)`
+  - `searchRides(time, vehicleType)`
+  - `bookRide(rideId, employeeId)`
+
+- `src/app/features/add-ride`  
+  Component to add a new ride.
+
+- `src/app/features/search-book-ride`  
+  Component to search and book rides.
+
+- `src/app/app.component.*`  
+  Simple shell layout that hosts both feature components.
+
+---
+
+## ▶️ Running the Project Locally
+
+```bash
+# install dependencies
+npm install
+
+# run dev server
+ng serve
+# open http://localhost:4200
