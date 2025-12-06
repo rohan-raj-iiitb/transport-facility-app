@@ -1,0 +1,47 @@
+<section class="card">
+  <h2>Add New Ride</h2>
+
+  <form (ngSubmit)="onSubmit()" class="form">
+    <div class="form-row">
+      <label>Employee ID *</label>
+      <input [(ngModel)]="form.employeeId" name="employeeId" required />
+    </div>
+
+    <div class="form-row">
+      <label>Vehicle Type *</label>
+      <select [(ngModel)]="form.vehicleType" name="vehicleType">
+        <option *ngFor="let vt of vehicleTypes" [value]="vt">
+          {{ vt }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Vehicle No *</label>
+      <input [(ngModel)]="form.vehicleNo" name="vehicleNo" required />
+    </div>
+
+    <div class="form-row">
+      <label>Vacant Seats *</label>
+      <input type="number" min="1" [(ngModel)]="form.vacantSeats" name="vacantSeats" required />
+    </div>
+
+    <div class="form-row">
+      <label>Time (HH:mm) *</label>
+      <input type="time" [(ngModel)]="form.time" name="time" required />
+    </div>
+
+    <div class="form-row">
+      <label>Pick-up Point *</label>
+      <input [(ngModel)]="form.pickupPoint" name="pickupPoint" required />
+    </div>
+
+    <div class="form-row">
+      <label>Destination *</label>
+      <input [(ngModel)]="form.destination" name="destination" required />
+    </div>
+
+    <button type="submit" class="btn-primary">Add Ride</button>
+    <p class="message" *ngIf="message">{{ message }}</p>
+  </form>
+</section>
